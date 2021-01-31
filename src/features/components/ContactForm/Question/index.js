@@ -11,9 +11,9 @@ function Card(props) {
   return (
             <div>
                 <div className='QuestionFormat'> 
-                    <div>
+                    <div >
                         <Badge color="secondary">
-                            <LabelIcon />
+                            <LabelIcon className='iconbadge'/>
                         </Badge>
                         
                         <Badge color="secondary">

@@ -1,5 +1,6 @@
 import React from "react";
 import Questionario from './features/Questionario'
+import Relatorio from './features/pages/index'
 
 import {
   BrowserRouter as Router,
@@ -11,11 +12,11 @@ export default function Routes() {
     return (
       <Router>
           <Switch>
-            <Route path="/about">
+            <Route path="/questionslider">
               <Questionario />
             </Route>
-            <Route path="/users">
-              <Questionario />
+            <Route path="/relatorio">
+              <Relatorio />
             </Route>
           </Switch>
       </Router>

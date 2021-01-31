@@ -1,5 +1,8 @@
 import './index.css';
 import Button from '@material-ui/core/Button';
+import { FullsizePicture, Picture } from 'react-responsive-picture';
+import { useHistory } from 'react-router-dom';
+
 
 import {
     setQuestionsValue,
@@ -13,7 +16,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 
-function Card(props) {  
+
+
+function CardComponent(props) {  
+  
+    const history = useHistory();
+
 
 
     const inputIsValid = useSelector(selectinputIsValid)
@@ -23,7 +31,14 @@ function Card(props) {
     
 
   return (
+    <div style={{ height: 600 }}>
+    <FullsizePicture
+    src="http://localhost:3000/background.jpg"
+    sizes="(height: 30px) 30px, 10px">
+        
     <div className="Card">
+ 
+      
         <div className='Content'>
             <div className='Titulo'>{props.titulo}</div>
             <div className='Progresso'>
@@ -40,13 +55,14 @@ function Card(props) {
                 <div></div>
 
                 <div>
-                <Button variant="contained" color="primary"
+                
+                <Button variant="contained" color="primary" 
                  onClick={function () { 
 
 
                     if(props.questionNumber === '10'){
-                    alert('dale')
-                    
+
+                        history.push("/relatorio");                    
                         return 0;
                 }
 
@@ -82,15 +98,18 @@ function Card(props) {
 
                     
                     var a = false
-                    validate.map(function (value){
-                        if(!value){
+
+
+                    for (var i = 0; i < validate.length; i++) {
+                        if (validate[i] === false) {
                             a = false
                             return 0
-                        } else {
+                          break;
+                        }else {
                             a = true
                         }
-                    })
-                    console.log(validate)
+                      }
+              
                     if(a){
                         dispatch(setQuestionNumber())
 
@@ -126,15 +145,14 @@ function Card(props) {
             
         </div>
 
-      
-
-        
-
-        
+    
     </div>
+    </FullsizePicture>
+    </div>
+    
 
     
   );
 }
 
-export default Card;
+export default CardComponent;
