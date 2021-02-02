@@ -6,7 +6,8 @@ export const SetQuestion = createSlice({
     questions: [],
     options: [],
     questionNumber: 0,
-    inputIsValid: 0
+    inputIsValid: 0,
+    asks: ['qual seu nome?', 'qual seu blaba?', 'qual seu sobrenome?', 'qual sua cidade?', 'qual seu endenreço?', 'qual seu perfil de investidor?', 'qual seu sexo?', 'quanto pretende investir?', 'qual seu capital?']
 
   },
   reducers: {
@@ -41,6 +42,9 @@ export const { setQuestionsValue, setOption, setQuestionsValue2, setQuestionNumb
 // };
 
 export const selectOption = state => state.questions.option;
+
+
+export const selectAsks = state => state.questions.asks; 
 
 export const selectquestionNumber = state => state.questions.questionNumber;
 

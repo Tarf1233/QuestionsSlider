@@ -1,6 +1,6 @@
 import React from "react";
 import Questionario from './features/Questionario'
-import Relatorio from './features/pages/index'
+import Relatorio from './features/pages/SendEmail/index'
 
 import {
   BrowserRouter as Router,

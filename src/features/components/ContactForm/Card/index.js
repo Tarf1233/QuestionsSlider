@@ -60,11 +60,6 @@ function CardComponent(props) {
                  onClick={function () { 
 
 
-                    if(props.questionNumber === '10'){
-
-                        history.push("/relatorio");                    
-                        return 0;
-                }
 
 
                      var validate = []
@@ -128,6 +123,12 @@ function CardComponent(props) {
                     else{
                         console.log('a')
                     }
+
+                    if(props.questionNumber >= 3){
+
+                        history.push("/relatorio");                    
+                        return 0;
+                }
                         
                 }
                 

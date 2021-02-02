@@ -52,7 +52,7 @@ class Card extends React.Component {
           <div>
           <div><Question question={this.props.question}/></div>
             <ValidatorForm
-                ref="form"
+                //ref="form" tava dando erro 
                 onSubmit={this.handleSubmit}
                 onError={errors => console.log(errors)}
             >
