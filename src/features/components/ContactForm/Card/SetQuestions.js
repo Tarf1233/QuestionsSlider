@@ -3,11 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 export const SetQuestion = createSlice({
   name: 'questions',
   initialState: {
+    inputValue: '',
     questions: [],
-    options: [],
+    options: {},
     questionNumber: 0,
     inputIsValid: 0,
-    asks: ['qual seu nome?', 'qual seu blaba?', 'qual seu sobrenome?', 'qual sua cidade?', 'qual seu endenreço?', 'qual seu perfil de investidor?', 'qual seu sexo?', 'quanto pretende investir?', 'qual seu capital?']
+    asks: ['qual seu nome?', 'qual sua atividade principal?', 'qual seu sobrenome?', 'nome da empresa?', 'quanto pretende investir?', 'qual seu sexo?', 'nome da mae?', 'qual seu perfil de investidor?', 'Nome do pai?']
 
   },
   reducers: {
@@ -21,10 +22,14 @@ export const SetQuestion = createSlice({
       state.questionNumber = state.questionNumber + 1
     },
     setQuestionsValue2: (state, action) => {
-      state.questions.push(state.options) 
+      state.questions.push(state.options.options) 
     },
     setinputIsValid: (state, action) => {
       state.inputIsValid = action.payload
+    },
+
+    resset: (state, action) => {
+      state.inputValue = ''
     },
   },
 });

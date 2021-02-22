@@ -16,103 +16,170 @@ import {
   setOption
 } from '../Card/SetQuestions';
 
+import {connect} from 'react-redux'
 
 
 
 
 
 
-function Card(props) {
-
-  const dispatch = useDispatch();
-
-  const [state, setState] = React.useState({
-  });
+class Card  extends React.Component{
 
 
+  constructor(props){
+    super(props)
 
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-    dispatch(setOption({ ...state, [event.target.name]: event.target.checked }))
+    this.state = {
+      questionNumber: 0,
+      stateschecks:{
+        checkedA: false,
+        checkedB: false,
+        checkedC: false,
+        checkedD: false
+      },
+      options:{}
+    };
+  }
+
+
+
+componentDidUpdate(){
+
+  if(this.props.questions.questionNumber > this.state.questionNumber){
+ 
+    this.setState({questionNumber: this.props.questions.questionNumber})
+    this.setState({ ...this.state.statecheck, stateschecks:{  checkedA: false, checkedB: false, checkedC: false, checkedD: false }})
+    this.setState({ ...this.state.statecheck, options:{}})
+    this.props.setOption(this.state)
+
+    
+  }
+}
+
+
+
+handleChange = (event, optionName) => {
+    this.setState({ options:{...this.state.options, [event.target.name]: event.target.checked}}, () => {
+      this.props.setOption(this.state)
+    })
+
+
+
+    
+
+
+
+switch(optionName){
+  case 0:
+    this.setState({
+      stateschecks:{...this.state.stateschecks, checkedA: !this.state.stateschecks.checkedA}
+    })
+    break
+  case 1:
+    this.setState({
+      stateschecks:{...this.state.stateschecks, checkedB: !this.state.stateschecks.checkedB}
+
+    })
+    break
+  case 2:
+  this.setState({
+    stateschecks:{...this.state.stateschecks, checkedC: !this.state.stateschecks.checkedC}
+
+  })
+  break
+  case 3:
+    this.setState({
+      stateschecks:{...this.state.stateschecks, checkedD: !this.state.stateschecks.checkedD}
+
+    })
+  break
+}
   
   
   
   };
 
-    function setQuestion(){
-      state.map(function(dale) {
+    setQuestion(){
+      this.state.map(function(dale) {
         alert(dale)
       })
     }
-  
+
 
   
-var options =    <FormGroup row>
+  
+render(){
+
+  console.log('dale'+this.props.optionscheck)
+
+
+  
+let options =    <FormGroup row>
                     <FormControlLabel
-                      control={ <Checkbox checked={state.checkedA} onChange={handleChange} name={props.options[0]} />}
-                      label={props.options[0]}
+                      control={ <Checkbox checked={this.state.stateschecks.checkedA} onChange={(event) => this.handleChange(event, 0)} name={this.props.optionscheck[0]} />}
+                      label={this.props.optionscheck[0]}
                     />
                   </FormGroup> 
 
 
 
-  if(props.optionsnumber === 1 ){
+  if(this.props.optionsnumber === 1 ){
     options =    
                     <FormGroup row>
                       <FormControlLabel
-                        control={ <Checkbox checked={state.checkedA} onChange={handleChange} name={props.options[0]}/>}
-                        label={props.options[0]}
+                        control={ <Checkbox checked={this.state.stateschecks.checkedA} onChange={(event) => this.handleChange(event, 0)} name={this.props.optionscheck[0]}/>}
+                        label={this.props.optionscheck[0]}
                       />
                     </FormGroup>
                  
-  } else if (props.optionsnumber === 2){
+  } else if (this.props.optionsnumber === 2){
     options =   
                     <FormGroup row>
                       <FormControlLabel
-                        control={ <Checkbox checked={state.checkedA} onChange={handleChange} name={props.options[0]} />}
-                        label={props.options[0]}
+                        control={ <Checkbox checked={this.state.stateschecks.checkedA} onChange={(event) => this.handleChange(event,0)} name={this.props.optionscheck[0]} />}
+                        label={this.props.optionscheck[0]}
                       />
                         <FormControlLabel
-                        control={ <Checkbox checked={state.checkedB} onChange={handleChange} name={props.options[1]} />}
-                        label={props.options[1]}
+                        control={ <Checkbox checked={this.state.stateschecks.checkedB} onChange={(event) => this.handleChange(event,1)} name={this.props.optionscheck[1]} />}
+                        label={this.props.optionscheck[1]}
                       />
                     </FormGroup>
                  
                  
 
-  }else if (props.optionsnumber === 3){
+  }else if (this.props.optionsnumber === 3){
     options =        <FormGroup row>
                         <FormControlLabel
-                          control={ <Checkbox checked={state.checkedA} onChange={handleChange} name= {props.options[0]} />}
-                          label={props.options[0]}
+                          control={ <Checkbox checked={this.state.stateschecks.checkedA} onChange={(event) => this.handleChange(event,0)} name= {this.props.optionscheck[0]} />}
+                          label={this.props.optionscheck[0]}
                         />
                         <FormControlLabel
-                          control={ <Checkbox checked={state.checkedB} onChange={handleChange} name = {props.options[1]} />}
-                          label={props.options[1]}
+                          control={ <Checkbox checked={this.state.stateschecks.checkedB} onChange={(event) => this.handleChange(event,1)} name = {this.props.optionscheck[1]} />}
+                          label={this.props.optionscheck[1]}
                         />
                         <FormControlLabel
-                          control={ <Checkbox checked={state.checkedC} onChange={handleChange} name = {props.options[2]}/>}
-                          label={props.options[2]}
+                          control={ <Checkbox checked={this.state.stateschecks.checkedC} onChange={(event) => this.handleChange(event,2)} name = {this.props.optionscheck[2]}/>}
+                          label={this.props.optionscheck[2]}
                         />
                       </FormGroup>
 
-  } else if (props.optionsnumber === 4){
+  } else if (this.props.optionsnumber === 4){
     options =     <FormGroup row> 
                     <FormControlLabel
-                      control={ <Checkbox checked={state.checkedA} onChange={handleChange} name={props.options[0]}/>}
-                      label={props.options[0]}
+                      control={ <Checkbox checked={this.state.stateschecks.checkedA} onChange={(event) => this.handleChange(event,0)} name={this.props.optionscheck[0]}/>}
+                      label={this.props.optionscheck[0]}
                     />
                     <FormControlLabel
-                      control={ <Checkbox checked={state.checkedB} onChange={handleChange} name={props.options[1]} />}
-                      label={props.options[1]}
+                      control={ <Checkbox checked={this.state.stateschecks.checkedB} onChange={(event) => this.handleChange(event,1)} name={this.props.optionscheck[1]} />}
+                      label={this.props.optionscheck[1]}
                     />
                     <FormControlLabel
-                      control={ <Checkbox checked={state.checkedC} onChange={handleChange} name={props.options[2]} />}
-                      label={props.options[2]}
+                      control={ <Checkbox checked={this.state.stateschecks.checkedC} onChange={(event) => this.handleChange(event,2)} name={this.props.optionscheck[2]} />}
+                      label={this.props.optionscheck[2]}
                     />
                     <FormControlLabel
-                      control={ <Checkbox checked={state.checkedD} onChange={handleChange} name={props.options[3]} />}
-                      label={props.options[3]}
+                      control={ <Checkbox checked={this.state.stateschecks.checkedD} onChange={(event) => this.handleChange(event,3)} name={this.props.optionscheck[3]} />}
+                      label={this.props.optionscheck[3]}
                     />
                   </FormGroup>
                   
@@ -121,15 +188,25 @@ var options =    <FormGroup row>
   return (
     
     <div>
-            <div><Question question={props.question}/></div>
+            <div><Question question={this.props.question}/></div>
             <div className='rowinputs'>
                 {options}
             </div>
 </div>
 
 
-
+  
   )
+}}
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching plain actions
+    setOption: (value) => dispatch(dispatch(setOption(value)))
+  }
 }
 
-export default Card
+const mapStateToProps = state => ({ questions: state.questions })
+
+export default connect(mapStateToProps ,mapDispatchToProps) (Card);

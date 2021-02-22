@@ -36,7 +36,7 @@ function App() {
         <QuestionCheck 
           question={asks[1]} 
           optionsnumber={4} 
-          options= {['dormir', 'comer', 'beber', 'sentar']}
+          optionscheck= {['dormir', 'comer', 'beber', 'sentar']}
         />, 
         <QuestionInput 
           question={asks[2]} 
@@ -46,14 +46,14 @@ function App() {
 
 
     <Card 
-      titulo={asks[3]}
+      titulo='Simulador de Investimestos'
       questionNumber={2}
       question={[
-        <QuestionInput question='qual seu endereço?'/>, 
+        <QuestionInput question={asks[3]}/>, 
         <QuestionCheck 
           question={asks[4]}
           optionsnumber={4} 
-          options= {['100', '200', '300', '400']}
+          optionscheck= {['100', '200', '300', '400']}
         />, 
         <QuestionInput 
           question={asks[5]}
@@ -62,16 +62,16 @@ function App() {
     }/>,
 
     <Card 
-      titulo={asks[5]}
+      titulo='Simulador de Investimentos'
       questionNumber={3} 
       question={[
         
-        <QuestionInput question={asks[7]}/>, 
+        <QuestionInput question={asks[6]}/>, 
 
         <QuestionCheck 
-        question={asks[6]}
+        question={asks[7]}
         optionsnumber={3} 
-        options= {['moderno', 'moderado', 'ousado']}
+        optionscheck= {['moderno', 'moderado', 'ousado']}
       />, 
        
         <QuestionInput 

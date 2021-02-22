@@ -22,12 +22,23 @@ class Card extends React.Component {
  
   constructor(props){
     super(props)
+
+    
+    this.state = {
+      questionNumber: 0,
+    }
   }
 
+
+ 
   
     state = {
-        email: '',
+        email: ''
     }
+
+
+
+    
  
     handleChange = (event) => {
         const email = event.target.value;
@@ -36,6 +47,16 @@ class Card extends React.Component {
  
     handleSubmit = () => {
         // your submit logic
+    }
+
+
+    componentDidUpdate(){
+     
+      if(this.props.questions.questionNumber > this.state.questionNumber){
+       
+        this.setState({questionNumber: this.props.questions.questionNumber})
+        this.setState({ email: '' })
+      }
     }
  
     render() {
@@ -78,5 +99,10 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null,mapDispatchToProps) (Card);
+
+const mapStateToProps = state => ({ questions: state.questions })
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps) (Card);
 

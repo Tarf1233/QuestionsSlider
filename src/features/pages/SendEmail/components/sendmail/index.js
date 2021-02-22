@@ -24,12 +24,32 @@ class Relatorio extends React.Component {
             <Span fontSize={20}>
               {this.props.questions.asks.map((ask, key)=>{
                let response = this.props.questions.questions[key]
-               if (typeof a_string === 'string') {
+               if (typeof response === 'string') {
                   return <div>{ask} {response}</div>
                 } else {
-                  const options = responses.keys(response).filter(item => checkitems[item] === true)
+                  let options = []
+                  let resposta
+
+                  console.log('response:' + response)
+                  Object.keys(response).forEach(function(item){
+
+                    if(response[item]==true)
+                      resposta = 'sim'
+                    else
+                      resposta= 'nao' 
+                    options.push("  "+item + " = " + resposta + "  ")
+                   
+                   });
+
+
+                
+
+
+                  // const options = Object.keys(response).filter(item => item[item] === true)
                   console.log("Todos booleanos", options);
-                  return <div>{ask} {options}</div>
+                  return <div>{ask} {   options.map((option, key) =>{
+                    return option
+                 })} </div>
                 }
                 
              })}
@@ -64,6 +84,7 @@ class Relatorio extends React.Component {
       render(){
   return (
             <div>
+              {this.emailHTML}
             </div>
 
   )
