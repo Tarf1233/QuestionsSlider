@@ -1,4 +1,5 @@
 import React from 'react'
+import CardFinal from '../../../../components/ContactForm/CardFinal'
 
 import { Email, Item, Span, A, renderEmail } from 'react-html-email'
 import axios from 'axios'
@@ -15,7 +16,9 @@ class Relatorio extends React.Component {
 
     constructor(props) {
         super(props);
-        // Don't call this.setState() here!
+        this.state = {
+          title: 'Processando...'
+        }
       }
 
       emailHTML = renderEmail(
@@ -67,12 +70,12 @@ class Relatorio extends React.Component {
         name: 'dale',
         email: 'thomazmatos@gmail.com',
         message: this.emailHTML
-          }
+          } 
       }).then((response)=>{
           if (response.data.msg === 'success'){
-              alert("Email sent, awesome!"); 
+              this.setState({title: 'Formulário Concluido'})
           }else if(response.data.msg === 'fail'){
-              alert("Oops, something went wrong. Try again")
+            this.setState({title: 'Não Foi Possivel concluir o formulário'})
           }
       })
       }
@@ -84,7 +87,7 @@ class Relatorio extends React.Component {
       render(){
   return (
             <div>
-              {this.emailHTML}
+              <CardFinal title={this.state.title}></CardFinal>
             </div>
 
   )
